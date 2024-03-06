@@ -68,10 +68,12 @@ void MPU6050Node::publishMPUData() {
   imu_data.linear_acceleration.x = mpu_data.accel.x * gravity_value;
   imu_data.linear_acceleration.y = mpu_data.accel.y * gravity_value;
   imu_data.linear_acceleration.z = mpu_data.accel.z * gravity_value;
+  imu_data.linear_acceleration_covariance = {0.05, 0, 0, 0, 0.05, 0,0,0,0.5};
 
   imu_data.angular_velocity.x =  mpu_data.gyro.x * deg_to_rad_factor;
   imu_data.angular_velocity.y =  mpu_data.gyro.y * deg_to_rad_factor;
   imu_data.angular_velocity.z =  mpu_data.gyro.z * deg_to_rad_factor;
+  imu_data.angular_velocity_covariance = {0.05, 0, 0, 0, 0.05, 0,0,0,0.5};
 
   imu_data.header.frame_id = imu_frame_id_;
   imu_data.header.stamp = ros::Time::now();
